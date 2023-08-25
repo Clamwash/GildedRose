@@ -71,13 +71,10 @@ public class GildedRose {
     }
     
     private func updateConjuredItem(_ item: Item) {
-        let degradeAmount = 2
-        if item.quality > degradeAmount {
-            item.quality -= degradeAmount
-        } else {
-            item.quality = 0
-        }
         item.sellIn -= 1
+        
+        let degradeAmount = item.sellIn < 0 ? 4 : 2
+        item.quality = max(item.quality - degradeAmount, 0)
     }
     
     private func containsConjured(_ name: String) -> Bool {
