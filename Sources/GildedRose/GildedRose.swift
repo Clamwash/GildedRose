@@ -20,7 +20,7 @@ public class GildedRose {
         case "Backstage passes to a TAFKAL80ETC concert":
             updateBackstagePasses(item)
         default:
-            if item.name.contains("Conjured") {
+            if containsConjured(item.name) {
                 updateConjuredItem(item)
             } else {
                 updateRegularItem(item)
@@ -78,5 +78,17 @@ public class GildedRose {
             item.quality = 0
         }
         item.sellIn -= 1
+    }
+    
+    private func containsConjured(_ name: String) -> Bool {
+        let target = "Conjured"
+        for i in 0..<(name.count - target.count + 1) {
+            let startIndex = name.index(name.startIndex, offsetBy: i)
+            let endIndex = name.index(startIndex, offsetBy: target.count)
+            if String(name[startIndex..<endIndex]) == target {
+                return true
+            }
+        }
+        return false
     }
 }
