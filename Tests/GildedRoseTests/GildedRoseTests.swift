@@ -59,5 +59,12 @@ class GildedRoseTests: XCTestCase {
         app.updateQuality()
         XCTAssertEqual(item.quality, 0)
     }
+    
+    func testConjuredItemQualityDrop() {
+        let item = Item(name: "Conjured", sellIn: 7, quality: 4)
+        let app = GildedRose(items: [item])
+        app.updateQuality()
+        XCTAssertEqual(item.quality, 2)
+    }
 }
 
